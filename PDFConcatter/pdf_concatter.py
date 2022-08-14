@@ -6,7 +6,7 @@ def LoadPdf(file_name):
     if not os.path.exists(file_name):
         print(f"Invalid args: No exists {file_name}.pdf")
         sys.exit(-1)
-    f = open(file_name, 'rb')
+    f = open(file_name, "rb")
     reader = pdf.PdfFileReader(f)
     return reader, f
 
