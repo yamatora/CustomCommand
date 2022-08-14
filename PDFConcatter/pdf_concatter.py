@@ -12,11 +12,17 @@ def LoadPdf(file_name):
 
 def main(args):
     filenames = args[1:]
-    readers = []
+    readers: list(pdf.PdfFileReader) = []
     files = []
     pages = 0
     for filename in filenames:
         reader, f = LoadPdf(filename)
+        if reader.isEncrypted:
+            f.close()
+            print(f"Decrypt {filename}")
+            command = f"qpdf --decrypt {filename} --replace-input"
+            os.system(command)
+            reader, f = LoadPdf(filename)
         readers.append(reader)
         files.append(f)
         pages += reader.getNumPages()
@@ -33,7 +39,8 @@ def main(args):
 
     writer = pdf.PdfFileWriter()
 
-    for reader in readers:
+    for i, reader in enumerate(readers):
+        reader: pdf.PdfFileReader
         page_num = reader.getNumPages()
         for p in range(page_num):
             writer.addPage(reader.getPage(p))
