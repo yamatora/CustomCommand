@@ -16,7 +16,7 @@ for %%a in (%*) do (
 )
 echo %name%.md -> %name%.pdf
 
-pandoc %name%.md -o %name%.pdf --template=%dir%md2tex\template.tex --pdf-engine=lualatex --pdf-engine-opt=-shell-escape -V documentclass=bxjsarticle -V classoption=pandoc --listings %ARGS%
+pandoc %name%.md -o %name%.pdf --template=%dir%md2tex\template.tex --pdf-engine=lualatex --pdf-engine-opt=-shell-escape -V documentclass=bxjsarticle -V classoption=pandoc --listings -M classoption=twocolumn %ARGS%
 
 @REM ---
 @REM Option
