@@ -6,7 +6,8 @@ from PIL import Image # pip install pillow
 def get_filled_image(image, ratio):
     # create image
     w_dst = int(image.width * (1.0/ratio))
-    dst = Image.new('RGB', (w_dst, image.height), (255, 255, 255))
+    # dst = Image.new('RGB', (w_dst, image.height), (255, 255, 255))    # 白埋め
+    dst = Image.new('RGBA', (w_dst, image.height), (0, 0, 0, 0))        # 透明
 
     # paste
     xpos = int((w_dst - image.width)/2)
