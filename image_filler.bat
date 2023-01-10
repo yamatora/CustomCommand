@@ -2,4 +2,4 @@
 
 echo ==Fill image
 
-Python C:\Users\yamatora\CustomCommand\ImageFiller\image_fill.py %1 %2
+Python C:\Users\ymtr\CustomCommand\ImageFiller\image_fill.py %1 %2
