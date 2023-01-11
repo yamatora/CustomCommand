@@ -8,12 +8,12 @@ def main(args):
         print("Invalid args: No exists file_path")
         sys.exit(-1)
     f = open(file_name+".pdf", 'rb')
-    reader = pdf.PdfFileReader(f)
+    reader = pdf.PdfReader(f)
 
-    page_num = reader.getNumPages()
-    media = reader.getPage(0).mediaBox
-    page_w = media.upperRight[0]
-    page_h = media.upperRight[1]
+    page_num = len(reader.pages)
+    media = reader.pages[0].mediabox
+    page_w = media.upper_right[0]
+    page_h = media.upper_right[1]
     print(page_num)
     #print(page_w)
     #print(page_h)
@@ -32,16 +32,16 @@ def main(args):
     #         writer.write(f)  # 出力
 
 
-    writer_odd = pdf.PdfFileWriter()
-    writer_even = pdf.PdfFileWriter()
+    writer_odd = pdf.PdfWriter()
+    writer_even = pdf.PdfWriter()
 
     for i in range(page_num):
-        page = reader.getPage(i)
+        page = reader.pages[i]
         if i%2 != 0:
-            writer_odd.addPage(page)
+            writer_odd.add_page(page)
             #print(f'odd: {i}')
         else:
-            writer_even.addPage(page)
+            writer_even.add_page(page)
             #print(f'even: {i}')
     
     out_path_odd = file_name + "_odd.pdf"
