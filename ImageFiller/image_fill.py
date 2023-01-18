@@ -2,6 +2,7 @@ import os
 import sys
 from unittest import result
 from PIL import Image # pip install pillow
+from argparse import ArgumentParser
 
 def get_filled_image(image, ratio):
     # create image
@@ -16,23 +17,33 @@ def get_filled_image(image, ratio):
 
 def main(args):
     # var
-    path_input = args[1]
+    path_input = os.path.abspath(args.image)
     base_name = os.path.splitext(os.path.basename(path_input))[0]
-    percentage = int(args[2])
+    percentage = int(args.percentage)
     ratio = float(percentage) / 100.0
 
     # load
-    image = Image.open(path_input)
+    image: Image = Image.open(path_input)
     # split
     result = get_filled_image(image, ratio)
     # save images
-    fname = f'./{base_name}_filled.png'
+    if args.overwrite:  # 上書き
+        fname = path_input
+        backup = f"./{base_name}_base.png"
+        if not os.path.exists(backup):
+            image.save(backup)
+    else:               # 別名
+        fname = f"./{base_name}_filled.png"
     result.save(fname)
     print(f'output "{fname}"')
 
 if __name__ == '__main__':
-    args = sys.argv
+    parser = ArgumentParser()
+    parser.add_argument("image", help="base image")
+    parser.add_argument("percentage", type=int, help="ratio of base image")
+    parser.add_argument("-o", "--overwrite", action="store_true", help="Whether overwrite or not")
+    option = parser.parse_args()
     try:
-        main(args)
+        main(option)
     except:
         print('error: invalid args')
