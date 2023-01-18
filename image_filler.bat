@@ -16,4 +16,4 @@ for %%a in (%*) do (
 
 echo ==Fill image
 
-Python %dir%..\imageFiller\image_fill.py %name% %ARGS%
+Python %dir%\ImageFiller\image_fill.py %name% %ARGS%
