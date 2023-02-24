@@ -11,6 +11,12 @@ import csv
 PATTERN_DAY     = r"(\w{4})/(\w{2})/(\w{2})\(.\)"
 PATTERN_TIME    = r"(\w{2}):(\w{2})\t"
 PATTERN_PLACE   = r"加盟店|銀行名"
+PATTERN_CANCEL  = r"キャンセルしました"
+
+TYPE_FOOD       = r"出前館|Uber Eats|マクドナルド|富士薬品グループ|オリジン|松屋|西友"
+TYPE_HOME       = r"東京都水道局|東京電力"
+TYPE_UNKNOWN    = r"Visa加盟店"
+
 
 def main(option):
     input_path   = option.filepath
@@ -91,11 +97,20 @@ class TimeData:
         price   = data[-1].split(" ")[-2].replace(",", "")
         purpose = data[-1].split(" ")[-3]
         place   = ""
+        type    = 0     # 0:OTHER 1:FOOD 2:HOME
         for text in self.list_text:
             if re.search(PATTERN_PLACE, text):
-                place = text.split(" ")[-1]
+                place = text.split(": ")[-1]
+            if re.search(PATTERN_CANCEL, text):
+                price = f"-{price}"
+        if re.search(TYPE_FOOD, place):
+            type = 1
+        if re.search(TYPE_HOME, place):
+            type = 2
+        if re.search(TYPE_UNKNOWN, place):
+            type = 3
 
-        return [day, time, price, purpose, place]
+        return [day, time, price, purpose, place, type]
 
 if __name__ == '__main__':
     parser = ArgumentParser()
