@@ -1,2 +1,4 @@
 pypdf2
 pillow
+pdf2image
+tqdm
