@@ -399,8 +399,19 @@ $if(csquotes)$
 $endif$
 
 % =================
-% Custom by yamatora
+% Custom by y
 %
+% yyyymmdd
+%   ex. \today
+\usepackage[yyyymmdd]{datetime}
+\renewcommand{\dateseparator}{/}
+
+%
+% multirow: Table
+%
+\usepackage{multirow}
+% \usepackage{amssymb,amsthm,amscd,graphicx,color}
+
 %
 % Listings
 %
@@ -420,7 +431,7 @@ $if(listings)$
 \definecolor{listing-keyword-3}{HTML}{000000} % additional keywords
 \definecolor{listing-identifier}{HTML}{000000}
 \definecolor{listing-string}{HTML}{000000}
-\definecolor{listing-comment}{HTML}{8E8E8E}
+\definecolor{listing-comment}{HTML}{5E5E5E}
 
 \renewcommand{\lstlistingname}{Code}
 \lstdefinestyle{eisvogel_listing_style}{
@@ -429,8 +440,8 @@ $if(listings-disable-line-numbers)$
   framexleftmargin = 0.4em,
 $else$
   % numbers          = left,
-  xleftmargin      = 1.5em,
-  framexleftmargin = 1.0em,
+  xleftmargin      = 0.6em,
+  framexleftmargin = 0.4em,
 $endif$
   backgroundcolor  = \color{listing-background},
   basicstyle       = \color{listing-text-color}\linespread{1.0}%
@@ -455,7 +466,7 @@ $endif$
   keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
   sensitive        = true,
   identifierstyle  = \color{listing-identifier},
-  commentstyle     = \color{listing-comment},
+  commentstyle     = {\color{listing-comment}\bfseries\textit},
   stringstyle      = \color{listing-string},
   showstringspaces = false,
   escapeinside     = {/*@}{@*/}, % Allow LaTeX inside these special comments
@@ -514,6 +525,41 @@ $endif$
   morestring   = [b]",
   morestring   = [b]',
 }
+% Python
+%   edited below
+%   https://gist.github.com/ahmaurya/e13e1bc7ec7c7258694d31987ad98169
+\lstdefinelanguage{python}{
+    morekeywords={access,and,break,class,continue,def,del,elif,else,except,exec,finally,for,from,global,if,import,in,is,lambda,not,or,pass,print,raise,return,try,while},
+    morekeywords=[2]{abs,all,any,basestring,bin,bool,bytearray,callable,chr,classmethod,cmp,compile,complex,delattr,dict,dir,divmod,enumerate,eval,execfile,file,filter,float,format,frozenset,getattr,globals,hasattr,hash,help,hex,id,input,int,isinstance,issubclass,iter,len,list,locals,long,map,max,memoryview,min,next,object,oct,open,ord,pow,property,range,raw_input,reduce,reload,repr,reversed,round,set,setattr,slice,sorted,staticmethod,str,sum,super,tuple,type,unichr,unicode,vars,xrange,zip,apply,buffer,coerce,intern},
+    sensitive=true,
+    morecomment=[l]\#,
+    morestring=[b]',
+    morestring=[b]",
+    morestring=[s]{'''}{'''},
+    morestring=[s]{"""}{"""},
+    morestring=[s]{r'}{'},
+    morestring=[s]{r"}{"},
+    morestring=[s]{r'''}{'''},
+    morestring=[s]{r"""}{"""},
+    morestring=[s]{u'}{'},
+    morestring=[s]{u"}{"},
+    morestring=[s]{u'''}{'''},
+    morestring=[s]{u"""}{"""},
+    % {replace}{replacement}{lenght of replace}
+    % *{-}{-}{1} will not replace in comments and so on
+    literate=
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+    {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+    {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+    {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+    {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+    {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+    {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+    {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+    {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+    {€}{{\EUR}}1 {£}{{\pounds}}1
+}
 
 \lstdefinelanguage{XML}{
   morestring      = [b]",
@@ -546,6 +592,17 @@ $endif$
 \renewcommand{\labelitemii}{・}
 \renewcommand{\labelitemiii}{・}
 \renewcommand{\labelitemiv}{・}
+
+%
+% multicolpar: 対訳
+%   http://www.ic.daito.ac.jp/~mizutani/tex/doc/translate/translate_sample.pdf
+
+\usepackage{multicolpar}
+\newcommand{\hideFromPandoc}[1]{#1}
+\hideFromPandoc{
+  \let\Begin\begin
+  \let\End\end
+}
 
 %
 % End of Custom
