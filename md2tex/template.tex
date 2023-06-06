@@ -407,6 +407,13 @@ $endif$
 \renewcommand{\dateseparator}{/}
 
 %
+% line num: To use define limitchar as True on YAML header
+%
+$if(limitcharnum)$ % 40 line/page, 40 character/line
+\usepackage[top=35truemm,bottom=35truemm,left=40truemm,right=40truemm]{geometry}
+$endif$
+
+%
 % multirow: Table
 %
 \usepackage{multirow}
