@@ -25,8 +25,8 @@ def build_thesis():
     year = input("Year: ")
 
     # Print reference format
-    print("\nReference    : {}，{}，{}，{}．\\\\".format(author, title, publisher, year))   # 卒論
-    print("\nReference    : {}: {}，{}，{}．\\\\".format(author, title, publisher, year))   # 投稿論文
+    # print("\nReference    : {}，{}，{}，{}．\\\\".format(author, title, publisher, year))    # Bachelor
+    print("\nReference    : {}: {}，{}，{}．\\\\".format(author, title, publisher, year))   # Paper
 
 # Get thesis information from DOI
 def get_from_doi_request(url: str) -> bool:
@@ -58,7 +58,8 @@ def get_from_doi_request(url: str) -> bool:
         print("Year         : {}".format(year))
         
         # Print reference format
-        print("\nReference    : {}，{}，{}，{}．\\\\".format(authors, title, journal, year))
+        # print("\nReference    : {}，{}，{}，{}．\\\\".format(authors, title, journal, year))    # Bachelor
+        print("\nReference    : {}: {}，{}，{}．\\\\".format(authors, title, journal, year))   # Paper
     except:
         # print(r.text)
         return False
@@ -101,7 +102,8 @@ def get_from_doi(doi: str):
     print("Date         : {}".format(date))
 
     # Print reference format
-    print("\nReference    : {}，{}，{}，{}．\\\\".format(authors, title, journal, year))
+    # print("\nReference    : {}，{}，{}，{}．\\\\".format(authors, title, journal, year))    # Bachelor
+    print("\nReference    : {}: {}，{}，{}．\\\\".format(authors, title, journal, year))   # Paper
 
 
 ####################
@@ -121,7 +123,8 @@ def build_book():
     year = input("Year: ")
 
     # Print reference format
-    print("\nReference    : {}，{}，{}，{}．\\\\".format(author, title, publisher, year))
+    # print("\nReference    : {}，{}，{}，{}．\\\\".format(author, title, publisher, year))   # Bachelor
+    print("\nReference    : {}: {}，{}，{}．\\\\".format(author, title, publisher, year))   # Paper
 
 # Get book information from ISBN
 def get_book_from_ISBN(isbn: str):
@@ -161,7 +164,8 @@ def get_book_from_ISBN(isbn: str):
     print("Year         : {}".format(year))
 
     # Print reference format
-    print("\nReference    : {}，{}，{}，{}．\\\\".format(author, title, publisher, year))
+    # print("\nReference    : {}，{}，{}，{}．\\\\".format(author, title, publisher, year)) # Bachelor
+    print("\nReference    : {}: {}，{}，{}．\\\\".format(author, title, publisher, year)) # Paper
 
 
 ####################
