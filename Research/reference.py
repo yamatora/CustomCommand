@@ -176,8 +176,8 @@ if __name__ == '__main__':
     # get doi by option
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--doi', type=str, default=None, help="Build with DOI")
-    parser.add_argument('--isbn', type=str, default=None, help="Build with ISBN")
+    parser.add_argument('--doi', type=str, default=None, help="Get information with DOI")
+    parser.add_argument('--isbn', type=str, default=None, help="Get information with ISBN")
     parser.add_argument('--book', action='store_true', help="Build with book information")
     parser.add_argument('--thesis', action='store_true', help="Build with thesis information")
     args = parser.parse_args()
