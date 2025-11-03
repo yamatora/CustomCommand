@@ -1,6 +1,6 @@
 @echo off
 
-echo ==Output .md(LaTeX) from .md
+echo ==Output .md(mkdocs) from .md
 set dir=%~dp0
 set name=%~n1
 set ARGS=
