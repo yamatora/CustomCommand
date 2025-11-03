@@ -15,6 +15,6 @@ for %%a in (%*) do (
   )
 )
 
-python %dir%\Translatex\main.py --mkdocs %name%.md%ARGS%
+python %dir%\Translatex\main.py --mkdocs "%name%.md" %ARGS%
 
 @REM call md2tex.bat tl_%name%.md -N
